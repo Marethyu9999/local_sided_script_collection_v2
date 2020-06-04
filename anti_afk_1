@@ -1,0 +1,6 @@
+repeat wait(0.1) until game:GetService("Players").LocalPlayer wait(2)
+
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):CaptureController()
+	game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
