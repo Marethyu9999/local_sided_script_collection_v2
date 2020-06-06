@@ -12,7 +12,7 @@ if not game:IsLoaded() then
 	notLoaded:Destroy()
 end
 
-ver = '3.9'
+ver = '3.9.3'
 
 Players = game:GetService("Players")
 
@@ -1112,7 +1112,7 @@ Holder_6.ScrollBarImageColor3 = Color3.fromRGB(78,78,79)
 Holder_6.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Holder_6.CanvasSize = UDim2.new(0, 0, 0, 0)
 Holder_6.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
-Holder_6.ScrollBarThickness = 8
+Holder_6.ScrollBarThickness = 0
 Holder_6.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Holder_6.VerticalScrollBarInset = 'Always'
 Holder_6.ZIndex = 10
@@ -1353,7 +1353,7 @@ Holder_4.ScrollBarImageColor3 = Color3.fromRGB(78,78,79)
 Holder_4.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Holder_4.CanvasSize = UDim2.new(0, 0, 0, 0)
 Holder_4.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
-Holder_4.ScrollBarThickness = 8
+Holder_4.ScrollBarThickness = 0
 Holder_4.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Holder_4.VerticalScrollBarInset = 'Always'
 Holder_4.ZIndex = 10
@@ -1546,7 +1546,7 @@ Holder_5.BackgroundTransparency = 1
 Holder_5.BorderSizePixel = 0
 Holder_5.Position = UDim2.new(0, 0, 0, 0)
 Holder_5.Selectable = false
-Holder_5.Size = UDim2.new(0, 250, 0, 140)
+Holder_5.Size = UDim2.new(0, 250, 0, 145)
 Holder_5.ScrollBarImageColor3 = Color3.fromRGB(78,78,79)
 Holder_5.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Holder_5.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -2436,9 +2436,9 @@ end
 infJump = false
 IYMouse.KeyDown:connect(function(Key)
 	if (Key==prefix) then
-		Holder.Cmdbar:CaptureFocus()
+		Cmdbar:CaptureFocus()
 		spawn(function()
-			repeat Holder.Cmdbar.Text = '' until Holder.Cmdbar.Text == ''
+			repeat Cmdbar.Text = '' until Cmdbar.Text == ''
 		end)
 		maximizeHolder()
 	elseif infJump == true and Key == " " then
@@ -2451,7 +2451,7 @@ Holder.MouseEnter:Connect(function()
 end)
 
 Holder.MouseLeave:Connect(function()
-	if not Holder.Cmdbar:IsFocused() then
+	if not Cmdbar:IsFocused() then
 		minimizeHolder()
 	end
 end)
@@ -3484,10 +3484,10 @@ function autoComplete(str)
 			break
 		end
 	end
-	Holder.Cmdbar.Text = str:sub(1, stop - 1)..' '
+	Cmdbar.Text = str:sub(1, stop - 1)..' '
 	wait()
-	Holder.Cmdbar.Text = Holder.Cmdbar.Text:gsub( '\t', '' )
-	Holder.Cmdbar.CursorPosition = 1020
+	Cmdbar.Text = Cmdbar.Text:gsub( '\t', '' )
+	Cmdbar.CursorPosition = 1020
 end
 
 CMDs = {}
@@ -3657,7 +3657,7 @@ CMDs[#CMDs + 1] = {NAME = 'unstrengthen', DESC = 'Sets your characters CustomPhy
 CMDs[#CMDs + 1] = {NAME = 'speed / ws [num]', DESC = 'Change your walkspeed'}
 CMDs[#CMDs + 1] = {NAME = 'hipheight / hheight [num]', DESC = 'Adjusts hip height'}
 CMDs[#CMDs + 1] = {NAME = 'jumppower / jpower [num]', DESC = 'Change a players jump height'}
-CMDs[#CMDs + 1] = {NAME = 'gravity / grav [num]', DESC = 'Change your gravity'}
+CMDs[#CMDs + 1] = {NAME = 'gravity / grav [num] (CLIENT)', DESC = 'Change your gravity'}
 CMDs[#CMDs + 1] = {NAME = 'sit', DESC = 'Makes your character sit'}
 CMDs[#CMDs + 1] = {NAME = 'nosit', DESC = 'Prevents your character from sitting'}
 CMDs[#CMDs + 1] = {NAME = 'unnosit', DESC = 'disables nosit'}
@@ -3741,7 +3741,7 @@ for i = 1, #CMDs do
 		desc.Value = CMDs[i].DESC
 		newcmd.MouseButton1Down:Connect(function()
 			if newcmd.Visible and newcmd.TextTransparency == 0 then
-				Holder.Cmdbar:CaptureFocus()
+				Cmdbar:CaptureFocus()
 				autoComplete(newcmd.Text)
 				maximizeHolder()
 			end
@@ -4046,7 +4046,7 @@ function addcmdtext(text,name,desc)
 		desc.Value = tooltipDesc
 		newcmd.MouseButton1Down:Connect(function()
 			if newcmd.Visible and newcmd.TextTransparency == 0 then
-				Holder.Cmdbar:CaptureFocus()
+				Cmdbar:CaptureFocus()
 				autoComplete(newcmd.Text)
 				maximizeHolder()
 			end
@@ -4345,21 +4345,21 @@ Players.LocalPlayer.Chatted:connect(function(message)
 	do_exec(message, Players.LocalPlayer)
 end)
 
-Holder.Cmdbar:GetPropertyChangedSignal("Text"):connect(function()
-	if Holder.Cmdbar:IsFocused() then
-		IndexContents(Holder.Cmdbar.Text,true,true)
+Cmdbar:GetPropertyChangedSignal("Text"):connect(function()
+	if Cmdbar:IsFocused() then
+		IndexContents(Cmdbar.Text,true,true)
 	end
 end)
 
 tabComplete = nil
-Holder.Cmdbar.FocusLost:connect(function(enterpressed)
+Cmdbar.FocusLost:connect(function(enterpressed)
 	if enterpressed then
-		execCmd(Holder.Cmdbar.Text,Players.LocalPlayer)
+		execCmd(Cmdbar.Text,Players.LocalPlayer)
 	end
 	if tabComplete then tabComplete:Disconnect() end
 	wait()
-	if not Holder.Cmdbar:IsFocused() then
-		Holder.Cmdbar.Text = "Command Bar"
+	if not Cmdbar:IsFocused() then
+		Cmdbar.Text = "Command Bar"
 		IndexContents('',true,false,true)
 		if canvasPos ~= nil then
 			CMDsF.CanvasPosition = Vector2.new(0, canvasPos)
@@ -4373,7 +4373,7 @@ Holder.Cmdbar.FocusLost:connect(function(enterpressed)
 	end
 end)
 
-Holder.Cmdbar.Focused:Connect(function()
+Cmdbar.Focused:Connect(function()
 	historyCount = 0 
 	if SettingsOpen == true then
 		wait(0.2)
@@ -4381,7 +4381,7 @@ Holder.Cmdbar.Focused:Connect(function()
 		Holder.Settings:TweenPosition(UDim2.new(0, 0, 0, 220), "InOut", "Quart", 0.2, true, nil)
 	end
 	tabComplete = UserInputService.InputBegan:Connect(function(input,gameProcessed)
-		if Holder.Cmdbar:IsFocused() then
+		if Cmdbar:IsFocused() then
 			if input.KeyCode == Enum.KeyCode.Tab and topCommand ~= nil then
 				autoComplete(topCommand)
 			end
@@ -4392,16 +4392,19 @@ Holder.Cmdbar.Focused:Connect(function()
 end)
 
 UserInputService.InputBegan:Connect(function(input)
-    if not Holder.Cmdbar:IsFocused() then return end
-    if input.KeyCode == Enum.KeyCode.Up then
-        historyCount = historyCount + 1
-        if historyCount > #cmdHistory then historyCount = #cmdHistory end
-        Holder.Cmdbar.Text = cmdHistory[historyCount] or ""
-    elseif input.KeyCode == Enum.KeyCode.Down then
-        historyCount = historyCount - 1
-        if historyCount < 1 then historyCount = 1 end
-        Holder.Cmdbar.Text = cmdHistory[historyCount] or ""
-    end
+	if Cmdbar and Cmdbar:IsFocused() then
+		if input.KeyCode == Enum.KeyCode.Up then
+			historyCount = historyCount + 1
+			if historyCount > #cmdHistory then historyCount = #cmdHistory end
+			Cmdbar.Text = cmdHistory[historyCount] or ""
+			Cmdbar.CursorPosition = 1020
+		elseif input.KeyCode == Enum.KeyCode.Down then
+			historyCount = historyCount - 1
+			if historyCount < 1 then historyCount = 1 end
+			Cmdbar.Text = cmdHistory[historyCount] or ""
+			Cmdbar.CursorPosition = 1020
+		end
+	end
 end)
 
 ESPenabled = false
@@ -6381,6 +6384,7 @@ addcmd('unview',{'unspectate'},
 end)
 
 fcLoaded = false
+NAV_KEYBOARD_SPEED = Vector3.new(1, 1, 1)
 addcmd('freecam',{'fc'},
 	function(args, speaker)
 	if fcLoaded == false then
@@ -6453,7 +6457,6 @@ addcmd('freecam',{'fc'},
 				Delta = Vector2.new(),
 			}
 		
-			NAV_KEYBOARD_SPEED = Vector3.new(1, 1, 1)
 			PAN_MOUSE_SPEED = Vector2.new(1, 1)*(math.pi/64)
 			NAV_ADJ_SPEED = 0.75
 			NAV_SHIFT_MUL = 0.25
@@ -6647,15 +6650,11 @@ end)
 
 addcmd('freecamspeed',{'fcspeed'},
 	function(args, speaker)
-	if fcLoaded then
-		if args[1] and isNumber(args[1]) then
-			local FCspeed = args[1]
-			NAV_KEYBOARD_SPEED = Vector3.new(FCspeed, FCspeed, FCspeed)
-		else
-			NAV_KEYBOARD_SPEED = Vector3.new(1, 1, 1)
-		end
+	if args[1] and isNumber(args[1]) then
+		local FCspeed = args[1]
+		NAV_KEYBOARD_SPEED = Vector3.new(FCspeed, FCspeed, FCspeed)
 	else
-		notify('Freecam Speed','Run freecam before adjusting its speed')
+		NAV_KEYBOARD_SPEED = Vector3.new(1, 1, 1)
 	end
 end)
 
@@ -7310,7 +7309,7 @@ addcmd('weaken',{},
 	for _, child in pairs(speaker.Character:GetDescendants()) do
 		if child.ClassName == "Part" then
 			if args[1] then
-				child.CustomPhysicalProperties = PhysicalProperties.new(args[1], 0.3, 0.5)
+				child.CustomPhysicalProperties = PhysicalProperties.new(-args[1], 0.3, 0.5)
 			else
 				child.CustomPhysicalProperties = PhysicalProperties.new(0, 0.3, 0.5)
 			end
