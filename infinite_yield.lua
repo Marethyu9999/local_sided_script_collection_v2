@@ -1,16 +1,3 @@
-local clicky = Instance.new("ClickDetector")
-local jjsploiter = true
-clicky.MouseClick:Connect(function()
-jjsploiter = false
-end)
-pcall(function()
-fireclickdetector(clicky)
-end)
-if jjsploiter then
-game.Players.LocalPlayer:Kick()
-else
-print("yay synapse user")
-end
 if IY_LOADED then
 	error("Infinite Yield is already running!",0)
 	return
