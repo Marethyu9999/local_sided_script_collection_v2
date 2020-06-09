@@ -1,17 +1,3 @@
-local clicky = Instance.new("ClickDetector")
-local jjsploiter = true
-clicky.MouseClick:Connect(function()
-jjsploiter = false
-end)
-pcall(function()
-fireclickdetector(clicky)
-end)
-if jjsploiter then
-game.Players.LocalPlayer:Kick()
-else
-print("Worthy")
-end
---End
 spawn(function()
 local message = Instance.new("Message",workspace)
 message.Text = "Loaded press z to execute inviseble , press x to respawn)"
