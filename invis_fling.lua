@@ -74,7 +74,7 @@ game:GetService('RunService').RenderStepped:connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
 end)
 
-power = 99999999999999 -- change this to make it more or less powerful
+power = 999999  -- change this to make it more or less powerful
 
 power = power*10
 
