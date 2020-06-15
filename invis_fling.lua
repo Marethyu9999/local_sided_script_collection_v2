@@ -1,9 +1,19 @@
+
+
+
 spawn(function()
 local message = Instance.new("Message",workspace)
 message.Text = "Loaded press z to execute inviseble , press x to respawn)"
-wait(2.0)
+wait(0.5)
 message:Destroy()
 end)
+
+
+
+
+
+
+
 
 local mouse = game.Players.LocalPlayer:GetMouse()
 
@@ -17,10 +27,11 @@ mouse.KeyDown:connect(function(k)
 		
 spawn(function()
 local message = Instance.new("Message",workspace)
-message.Text = "Fe Invisible Fling collected By Marethyu#1248 Loaded (wait 11 seconds to load)"
+message.Text = "Fe Invisible Fling By Diemiers#4209 Loaded (wait 11 seconds to load)"
 wait(11)
 message:Destroy()
 end)
+
 
 local ch = game.Players.LocalPlayer.Character
 local prt=Instance.new("Model", workspace)
@@ -40,6 +51,7 @@ z2.Position = Vector3.new(0,9991,0)
 wait(5)
 game.Players.LocalPlayer.Character=ch
 wait(6)
+
 
 local plr = game.Players.LocalPlayer
 mouse = plr:GetMouse()
@@ -67,6 +79,7 @@ workspace.CurrentCamera.CameraSubject = root
 local se = Instance.new("SelectionBox",root)
 se.Adornee = root
 
+
 game:GetService('RunService').Stepped:connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
 end)
@@ -74,7 +87,8 @@ game:GetService('RunService').RenderStepped:connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
 end)
 
-power = 99999999  -- change this to make it more or less powerful
+
+power = 999999 -- change this to make it more or less powerful
 
 power = power*10
 
@@ -85,6 +99,10 @@ bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
 bambam.Force = Vector3.new(power,0,power)
 bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position 
 
+
+
+
+
 local plr = game.Players.LocalPlayer
 local torso = root
 local flying = true
@@ -94,10 +112,12 @@ local lastctrl = {f = 0, b = 0, l = 0, r = 0}
 local maxspeed = 120
 local speed = 15
 
+
 ---local bambam = Instance.new("BodyThrust")
 ---bambam.Parent = torso
 --bambam.Force = Vector3.new(9999999,0,9999999)
 --bambam.Location = torso.Position
+
 
 ---
 groot = root
