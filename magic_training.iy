@@ -1,0 +1,17 @@
+local PluginAPI = loadstring(game:HttpGet("https://pastebin.com/raw/u7HEbm8q"))()
+local Plugin = PluginAPI:CreatePlugin("Magic Training", "made by Marethyu#0181")
+Plugin.Functions:AddCommand("mtitem", "mtitem",  "Gives you the Fly and the Elder Wand items", {}, function(args,speaker) 
+    if game.GameId == 206362135 then
+        loadstring(game:HttpGet('https://pastebin.com/raw/dsWMYnXK'))()
+    else
+        notify("not the right game")
+    end
+end)
+Plugin.Functions:AddCommand("mtmacro", "mtmacro",  "Gives you a Macro Gui", {}, function(args,speaker) 
+    if game.GameId == 206362135 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/86vZXTem", true))()
+    else
+        notify("not the right game")
+    end
+end)
+return Plugin.PluginTables
